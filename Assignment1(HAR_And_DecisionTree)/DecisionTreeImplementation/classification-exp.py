@@ -96,12 +96,14 @@ for fold_no in range(K):
     
     depth_accs=[]
     
+    inner_fold_size= len(X_train)//K
+    
     for depth in depths:
         inner_accs=[]
         for inner_fold_no in range(K):
             
-            inner_start=inner_fold_no*fold_size
-            inner_end=(inner_fold_no+1)*fold_size
+            inner_start=inner_fold_no*inner_fold_size
+            inner_end=(inner_fold_no+1)*inner_fold_size
             inner_val_data=df.iloc[inner_start:inner_end]
             inner_train_data=pd.concat([df.iloc[:inner_start],df.iloc[inner_end:]],axis=0)
             
